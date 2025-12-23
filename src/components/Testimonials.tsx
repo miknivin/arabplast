@@ -11,7 +11,7 @@ const testimonials = [
   },
   {
     name: "John Smith",
-    text: "Outstanding quality and excellent customer service. The team at Arabplast went above and beyond to meet our project requirements. The pipes and fittings exceeded our expectations in terms of durability and performance.",
+    text: "Outstanding quality and excellent customer service. The team at Arabplast went above and beyond to meet our project requirements. The pipes and fittings exceeded our expectations in terms of durability and performance",
     rating: 5,
   },
   {
@@ -136,8 +136,8 @@ export function Testimonials() {
                     >
                       <Star
                         className={`w-5 h-5 md:w-6 md:h-6 ${i < testimonials[currentIndex].rating
-                            ? "fill-[#EBA330] text-[#EBA330]"
-                            : "fill-[#CFCFCF] text-[#CFCFCF]"
+                          ? "fill-[#EBA330] text-[#EBA330]"
+                          : "fill-[#CFCFCF] text-[#CFCFCF]"
                           }`}
                       />
                     </motion.div>
