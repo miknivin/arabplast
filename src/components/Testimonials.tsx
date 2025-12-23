@@ -6,7 +6,7 @@ import { Star } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Elon musk",
+    name: "Thomas",
     text: "I recently ordered products from Arabplast Factory and was very impressed with their timely delivery. The entire process was smooth, and my order arrived right on schedule. The products were well-packaged and in perfect condition. Their commitment to prompt delivery truly sets them apart. Highly recommended for reliable and timely service!",
     rating: 5,
     image: imgProfile
@@ -131,13 +131,13 @@ export function Testimonials() {
                   animate={{ scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.2, type: "spring" }}
                 >
-                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden shadow-lg ring-4 ring-white">
+                  {/* <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden shadow-lg ring-4 ring-white">
                     <img
                       src={testimonials[currentIndex].image}
                       alt={testimonials[currentIndex].name}
                       className="w-full h-full object-cover"
                     />
-                  </div>
+                  </div> */}
                 </motion.div>
 
                 {/* Content */}
