@@ -1,7 +1,6 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useInView } from "./hooks/useInView";
-import { useState, useEffect, useRef } from "react";
-import imgProfile from "../assets/781866a76e0692b0d058abd7158ad9889b24ea23.png";
+import { useState, useRef } from "react";
 import { Star } from "lucide-react";
 
 const testimonials = [
@@ -9,19 +8,16 @@ const testimonials = [
     name: "Thomas",
     text: "I recently ordered products from Arabplast Factory and was very impressed with their timely delivery. The entire process was smooth, and my order arrived right on schedule. The products were well-packaged and in perfect condition. Their commitment to prompt delivery truly sets them apart. Highly recommended for reliable and timely service!",
     rating: 5,
-    image: imgProfile
   },
   {
     name: "John Smith",
     text: "Outstanding quality and excellent customer service. The team at Arabplast went above and beyond to meet our project requirements. The pipes and fittings exceeded our expectations in terms of durability and performance.",
     rating: 5,
-    image: imgProfile
   },
   {
     name: "Sarah Johnson",
     text: "We've been using Arabplast products for over 5 years now. Their consistency in quality and competitive pricing makes them our go-to supplier for all piping needs. Highly professional team!",
     rating: 5,
-    image: imgProfile
   }
 ];
 
@@ -59,9 +55,8 @@ export function Testimonials() {
     const touchEndX = e.touches[0].clientX;
     const diffX = touchStartX.current - touchEndX;
 
-    // Only trigger if swipe is mostly horizontal and significant
     if (Math.abs(diffX) > 50) {
-      e.preventDefault(); // Prevent vertical scroll during swipe
+      e.preventDefault();
     }
   };
 
@@ -71,13 +66,10 @@ export function Testimonials() {
     const touchEndX = e.changedTouches[0].clientX;
     const diffX = touchStartX.current - touchEndX;
 
-    // Swipe threshold: 50px
     if (Math.abs(diffX) > 50) {
       if (diffX > 0) {
-        // Swiped left → next testimonial
         setCurrentIndex((prev) => (prev + 1) % testimonials.length);
       } else {
-        // Swiped right → previous testimonial
         setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
       }
     }
@@ -88,24 +80,25 @@ export function Testimonials() {
   return (
     <section ref={ref} className="py-16 md:py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4">
-  {/* Title */}
-  <motion.div
-    className="text-center mb-12 md:mb-20"
-    initial={{ opacity: 0, y: 30 }}
-    animate={isInView ? { opacity: 1, y: 0 } : {}}
-    transition={{ duration: 0.6 }}
-  >
-    <h2 className="text-3xl sm:text-4xl md:text-6xl text-[#00262f] inline-block relative whitespace-nowrap">
-      What Our Clients Say
-      <motion.div
-        className="absolute -bottom-2 left-0 right-0 h-1 bg-[#00262f]/20"
-        initial={{ scaleX: 0 }}
-        animate={isInView ? { scaleX: 1 } : {}}
-        transition={{ duration: 0.8, delay: 0.3 }}
-      />
-    </h2>
-  </motion.div>
-        {/* Testimonial Card with Swipe & Wheel Support */}
+        {/* Title */}
+        <motion.div
+          className="text-center mb-12 md:mb-20"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-3xl sm:text-4xl md:text-6xl text-[#00262f] inline-block relative whitespace-nowrap">
+            What Our Clients Say
+            <motion.div
+              className="absolute -bottom-2 left-0 right-0 h-1 bg-[#00262f]/20"
+              initial={{ scaleX: 0 }}
+              animate={isInView ? { scaleX: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            />
+          </h2>
+        </motion.div>
+
+        {/* Testimonial Card */}
         <div
           className="max-w-4xl mx-auto relative"
           onWheel={handleWheel}
@@ -116,67 +109,45 @@ export function Testimonials() {
           <AnimatePresence mode="wait">
             <motion.div
               key={currentIndex}
-              className="bg-gradient-to-br from-white to-[#e5e5e5] rounded-2xl md:rounded-3xl p-6 md:p-12 shadow-xl cursor-pointer select-none touch-pan-y" // touch-pan-y allows vertical scroll outside
+              className="bg-gradient-to-br from-white to-[#e5e5e5] rounded-2xl md:rounded-3xl p-8 md:p-14 shadow-xl cursor-pointer select-none touch-pan-y text-center"
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -100 }}
               transition={{ duration: 0.5 }}
               whileHover={{ scale: 1.01 }}
             >
-              <div className="flex flex-col md:flex-row items-start gap-6 md:gap-8">
-                {/* Profile Image */}
-                <motion.div
-                  className="flex-shrink-0 mx-auto md:mx-0"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.2, type: "spring" }}
-                >
-                  {/* <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden shadow-lg ring-4 ring-white">
-                    <img
-                      src={testimonials[currentIndex].image}
-                      alt={testimonials[currentIndex].name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div> */}
-                </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                <h3 className="text-2xl md:text-3xl font-semibold text-[#00262f] mb-4">
+                  {testimonials[currentIndex].name}
+                </h3>
 
-                {/* Content */}
-                <div className="flex-1 text-center md:text-left">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                  >
-                    <h3 className="text-xl md:text-2xl text-[#00262f] mb-3 md:mb-4">
-                      {testimonials[currentIndex].name}
-                    </h3>
-
-                    {/* Star Rating */}
-                    <div className="flex gap-1 md:gap-2 mb-4 md:mb-6 justify-center md:justify-start">
-                      {[...Array(5)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          initial={{ opacity: 0, scale: 0 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.3, delay: 0.4 + i * 0.05 }}
-                        >
-                          <Star
-                            className={`w-5 h-5 md:w-6 md:h-6 ${
-                              i < testimonials[currentIndex].rating
-                                ? "fill-[#EBA330] text-[#EBA330]"
-                                : "fill-[#CFCFCF] text-[#CFCFCF]"
-                            }`}
-                          />
-                        </motion.div>
-                      ))}
-                    </div>
-
-                    <p className="text-base md:text-xl text-[#00262f] leading-relaxed">
-                      {testimonials[currentIndex].text}
-                    </p>
-                  </motion.div>
+                {/* Star Rating */}
+                <div className="flex gap-1 md:gap-2 mb-4 md:mb-6 justify-center">
+                  {[...Array(5)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3, delay: 0.4 + i * 0.05 }}
+                    >
+                      <Star
+                        className={`w-5 h-5 md:w-6 md:h-6 ${i < testimonials[currentIndex].rating
+                            ? "fill-[#EBA330] text-[#EBA330]"
+                            : "fill-[#CFCFCF] text-[#CFCFCF]"
+                          }`}
+                      />
+                    </motion.div>
+                  ))}
                 </div>
-              </div>
+
+                <p className="text-lg md:text-2xl text-[#00262f] leading-relaxed italic">
+                  "{testimonials[currentIndex].text}"
+                </p>
+              </motion.div>
             </motion.div>
           </AnimatePresence>
 
@@ -186,11 +157,10 @@ export function Testimonials() {
               <motion.button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex
-                    ? "w-6 md:w-8 bg-[#00262f]"
-                    : "w-2 bg-[#00262f]/30 hover:bg-[#00262f]/50"
-                }`}
+                className={`h-2 rounded-full transition-all duration-300 ${index === currentIndex
+                  ? "w-6 md:w-8 bg-[#00262f]"
+                  : "w-2 bg-[#00262f]/30 hover:bg-[#00262f]/50"
+                  }`}
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
               />

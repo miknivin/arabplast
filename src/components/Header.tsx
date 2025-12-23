@@ -69,54 +69,54 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
 
               {/* Contact Info - Only on xl and larger */}
               <div className="hidden xl:flex items-center gap-8 text-white/75">
-           <motion.div
-    className="flex items-center gap-3 border-l border-white/20 pl-8"
-    whileHover={{ scale: 1.05 }}
-  >
-    <Phone className="w-5 h-5 text-[#4baf47]" />
-    <div>
-      <p className="text-xs">Call anytime</p>
-      <a
-        href="tel:+980009630"
-        className="text-sm text-white hover:text-[#4baf47] transition-colors"
-      >
-        +98 (000) - 9630
-      </a>
-    </div>
-  </motion.div>
+                <motion.div
+                  className="flex items-center gap-3 border-l border-white/20 pl-8"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <Phone className="w-5 h-5 text-[#4baf47]" />
+                  <div>
+                    <p className="text-xs">Call anytime</p>
+                    <a
+                      href="tel:+980009630"
+                      className="text-sm text-white hover:text-[#4baf47] transition-colors"
+                    >
+                      +98 (000) - 9630
+                    </a>
+                  </div>
+                </motion.div>
 
-  {/* Email */}
-  <motion.div
-    className="flex items-center gap-3 border-l border-white/20 pl-8"
-    whileHover={{ scale: 1.05 }}
-  >
-    <Mail className="w-5 h-5 text-[#4baf47]" />
-    <div>
-      <p className="text-xs">Send email</p>
-      <a
-        href="mailto:info@arabplastpipes.com"
-        className="text-sm text-white hover:text-[#4baf47] transition-colors"
-      >
-        info@arabplastpipes.com
-      </a>
-    </div>
-  </motion.div>
+                {/* Email */}
+                <motion.div
+                  className="flex items-center gap-3 border-l border-white/20 pl-8"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <Mail className="w-5 h-5 text-[#4baf47]" />
+                  <div>
+                    <p className="text-xs">Send email</p>
+                    <a
+                      href="mailto:info@arabplastpipes.com"
+                      className="text-sm text-white hover:text-[#4baf47] transition-colors"
+                    >
+                      info@arabplastpipes.com
+                    </a>
+                  </div>
+                </motion.div>
 
-  {/* Address */}
-  <motion.div
-    className="flex items-center gap-3 border-l border-white/20 pl-8"
-    whileHover={{ scale: 1.05 }}
-  >
-    <MapPin className="w-5 h-5 text-[#4baf47]" />
-    <div>
-      <p className="text-xs">Visit us</p>
-      <p className="text-sm text-white">
-        New industrial area 1, Ajman, UAE
-      </p>
-    </div>
-  </motion.div>
+                {/* Address */}
+                <motion.div
+                  className="flex items-center gap-3 border-l border-white/20 pl-8"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <MapPin className="w-5 h-5 text-[#4baf47]" />
+                  <div>
+                    <p className="text-xs">Visit us</p>
+                    <p className="text-sm text-white">
+                      New industrial area 1, Ajman, UAE
+                    </p>
+                  </div>
+                </motion.div>
 
-</div>
+              </div>
 
               {/* Mobile Menu Button */}
               <motion.button
@@ -146,8 +146,8 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                 <motion.button
                   key={item.name}
                   onClick={() => handleNavigate(item.page)}
-                  className={`${isActive ? 'text-[#00262f]' : 'text-[#c7c7c7]'
-                    } hover:text-[#00262f] transition-colors relative group text-sm lg:text-base`}
+                  className={`${isActive ? 'text-[#4baf47]' : 'text-black-600'
+                    } hover:text-[#4baf47] font-medium transition-colors relative group text-sm lg:text-base px-1 py-2`}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 + index * 0.05 }}
@@ -155,8 +155,8 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                 >
                   {item.name}
                   <motion.span
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#00262f]"
-                    initial={{ scaleX: 0 }}
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#4baf47]"
+                    initial={{ scaleX: isActive ? 1 : 0 }}
                     whileHover={{ scaleX: 1 }}
                     transition={{ duration: 0.3 }}
                   />

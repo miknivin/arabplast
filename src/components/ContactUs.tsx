@@ -1,11 +1,23 @@
 import { motion } from "motion/react";
 import { useInView } from "./hooks/useInView";
 import { Send } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function ContactUs() {
+  const [isDesktop, setIsDesktop] = useState(false);
   const { ref: titleRef, isInView: titleInView } = useInView({ threshold: 0.5 });
   const { ref: formRef, isInView: formInView } = useInView({ threshold: 0.2 });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
+
+    handleResize(); // run once on mount
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -29,7 +41,9 @@ export function ContactUs() {
   };
 
   return (
-    <div className="bg-white relative overflow-hidden min-h-screen">
+    <div className="bg-white relative overflow-hidden min-h-screen"
+      style={{ marginTop: isDesktop ? "121px" : "55px" }}
+    >
       {/* Decorative Wave Patterns - Rotated 102.41deg */}
       <div className="absolute inset-0 opacity-25 pointer-events-none overflow-hidden">
         <div className="absolute left-[-821px] top-[202px] w-[1122px] h-[1978px]" style={{ transform: 'rotate(102.41deg)' }}>
@@ -58,29 +72,34 @@ export function ContactUs() {
       </div>
 
       {/* Gradient Background Overlay */}
-      <div 
-        className="absolute bg-gradient-to-b from-[rgba(1,50,62,0.125)] to-[rgba(255,255,255,0.5)] transform rotate-180 pointer-events-none" 
-        style={{ 
-          top: '235px', 
+      <div
+        className="absolute bg-gradient-to-b from-[rgba(1,50,62,0.125)] to-[rgba(255,255,255,0.5)] transform rotate-180 pointer-events-none"
+        style={{
+          top: '235px',
           left: '50%',
           transform: 'translateX(-50%) rotate(180deg)',
           width: '1289px',
           height: '1173px'
-        }} 
+        }}
       />
 
       <div className="relative z-10">
         {/* Title Section */}
         <section ref={titleRef} className="pt-12 pb-16">
-          <div className="max-w-7xl mx-auto px-4">
+          <div className="max-w-7xl mx-auto px-4 text-center">
             <motion.div
-              className="inline-block"
+              className="inline-block relative"
               initial={{ opacity: 0, y: 30 }}
               animate={titleInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
             >
-              <h1 className="text-6xl text-[#00262f]">Contact Us</h1>
-              <div className="mt-2 border border-[#0e343d]" />
+              <h1 className="text-4xl md:text-6xl text-[#00262f]">Contact Us</h1>
+              <motion.div
+                className="absolute -bottom-2 left-0 right-0 h-0.5 bg-[#0e343d]"
+                initial={{ scaleX: 0 }}
+                animate={titleInView ? { scaleX: 1 } : {}}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              />
             </motion.div>
           </div>
         </section>
