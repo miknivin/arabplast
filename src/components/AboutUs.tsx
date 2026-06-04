@@ -26,7 +26,7 @@ const values = [
     icon: Users,
     title: "Customer Focus",
     description:
-      "Customer Focus: Customers are the integral force of Power Plastics. We wish to be an all-inclusive service partner.",
+      " Customers are the integral force of Arabplast. We wish to be an all-inclusive service partner.",
   },
   {
     icon: Shield,

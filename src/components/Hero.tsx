@@ -45,8 +45,8 @@ export function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Building stronger piping solutions
-            <span className="block mt-2 sm:mt-4">for a Better Tomorrow</span>
+            Building Stronger Piping Solutions
+            <span className="block mt-2 sm:mt-4">For A Better Tomorrow</span>
           </motion.h1>
 
           <motion.p

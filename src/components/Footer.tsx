@@ -3,15 +3,15 @@ import imgLogo from "../assets/logo (1).png";
 import { Phone, Mail, MapPin, Linkedin, Instagram } from "lucide-react";
 
 interface FooterProps {
-  currentPage?: "home" | "about" | "products" | "services" | "applications" | "downloads" | "contact";
+  currentPage?: "home" | "about" | "products" | "downloads" | "contact";
   onNavigate?: (
-    page: "home" | "about" | "products" | "services" | "applications" | "downloads" | "contact"
+    page: "home" | "about" | "products" | "downloads" | "contact"
   ) => void;
 }
 
 export function Footer({ onNavigate }: FooterProps) {
   const handleNavigation = (
-    page: "home" | "about" | "products" | "services" | "applications" | "downloads" | "contact"
+    page: "home" | "about" | "products" | "downloads" | "contact"
   ) => {
     if (onNavigate) {
       onNavigate(page);
