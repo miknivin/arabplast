@@ -3,26 +3,20 @@ import { useInView } from "./hooks/useInView";
 
 const features = [
   {
-    number: "1",
-    title: "Uncompromised Quality",
-    description: 
-"As a premier manufacturer in the UAE, we guarantee that every pipe and fitting leaving our facility meets rigorous international standards. Our commitment to durability ensures our products withstand the harshest industrial conditions without failure"
-
+    title: "Quality Assured",
+    description: "Premium PVC and HDPE pipes manufactured with 100% virgin raw materials and advanced extrusion technology in the UAE."
   },
   {
-    number: "2",
-    title: "Diverse Product Range",
-    description: "From high-pressure industrial conduits to residential plumbing systems, our catalog is comprehensive. We manufacture specialized PVC, PPR, and HDPE solutions tailored to meet the unique demands of construction, agriculture, and infrastructure projects"
+    title: "Standards Compliant",
+    description: "All piping solutions conform to ISO, DIN, ASTM, BS, BS EN and NEMA international standards."
   },
   {
-    number: "3",
-    title: "Advanced Technology",
-    description: "We invest in the latest manufacturing technology to ensure absolute precision in every mold. Our state-of-the-art facilities in the UAE and India utilize automated processes that guarantee consistency, reducing installation time and waste for our clients."
+    title: "Wide Product Range",
+    description: "Complete range of PVC, uPVC, HDPE and polyethylene pipes for every project requirement across the UAE."
   },
   {
-    number: "4",
-    title: "Global Reach, Local Support",
-    description: "Our transformation from a trading firm to a global manufacturer means we understand supply chains better than anyone. We offer dedicated logistical support, ensuring timely delivery across the Middle East, Asia, and Africa, keeping your projects on schedule"
+    title: "In-House Testing",
+    description: "Fully equipped quality laboratory ensuring every batch of pipes meets strict performance standards."
   }
 ];
 
@@ -62,16 +56,6 @@ export function WhyChoose() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ y: -10 }}
             >
-              {/* Number */}
-              <motion.div
-                className="text-[#00262f] text-6xl mb-4 text-center flex-shrink-0"
-                initial={{ scale: 0 }}
-                animate={isInView ? { scale: 1 } : {}}
-                transition={{ duration: 0.5, delay: 0.3 + index * 0.1, type: "spring" }}
-              >
-                {feature.number}
-              </motion.div>
-
               {/* Card */}
               <div className="bg-gradient-to-b from-white to-[#f0f0f0] rounded-3xl p-6 shadow-lg group-hover:shadow-xl transition-shadow flex flex-col flex-1">
                 <h3 className="text-xl text-[#0e343d] mb-3">

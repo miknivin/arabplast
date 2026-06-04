@@ -1,123 +1,67 @@
-import { useState } from "react";
 import { motion } from "motion/react";
 import { useInView } from "./hooks/useInView";
 import { ChevronRight } from "lucide-react";
+import imgBlock1 from "../assets/blocks/block 1.png";
+import imgBlock2 from "../assets/blocks/block2.webp";
+import imgBlock3 from "../assets/blocks/block3.png";
+import imgBlock4 from "../assets/blocks/block 4.png";
+import imgBlock5 from "../assets/blocks/block 5.png";
 
-const categories = [
-  { id: "pvc", name: "PVC/UPVC Pipe and Fittings" },
-  { id: "ppr", name: "PPR Pipes and Fittings" },
-  { id: "poly", name: "Polyethelyne Pipes and Fittings" },
-  { id: "spacers", name: "Spacers" },
-  { id: "glue", name: "Power Bond / PVC Glue" }
+const products = [
+  {
+    title: "PVC/uPVC Piping Solutions",
+    description: "Arabplast PVC and uPVC pipes deliver high strength, corrosion resistance, and long service life across three core systems: Pressure Pipes for water supply and industrial use, Soil, Waste & Drainage for buildings, and Perforated & Slotted Pipes for sub-soil applications. Available in sizes from 20mm to 450mm, all products conform to ISO, DIN, ASTM, and BS international standards.",
+    image: imgBlock1,
+    standards: ["ISO 161/1", "Din 8061/62", "BS 3505", "BSEN 1452-2:2009"]
+  },
+  {
+    title: "Conduit & Duct Piping Systems",
+    description: "Arabplast Conduit & Duct Pipes are manufactured from high-quality PVC-U compounds, engineered to provide reliable protection and efficient routing for electrical, telecommunication, and data cabling systems. Widely used across infrastructure, commercial, and residential projects, our pipes are manufactured to Etisalat and DU network specifications and suitable for fibre-optic and CCTV cable installations. All products conform to NEMA, ASTM, BS, and EN international standards.",
+    image: imgBlock2,
+    standards: ["NEMA", "ASTM", "BS", "EN"]
+  },
+  {
+    title: "Polyethylene Pipes (HDPE / MDPE / LDPE / LLDPE)",
+    description: "Arabplast manufactures a complete range of polyethylene pipes — HDPE, MDPE, LDPE, and LLDPE — engineered for water supply, gas distribution, irrigation, firefighting networks, and industrial fluid transportation across the UAE. Known for excellent flexibility, corrosion resistance, and leak-free performance, our polyethylene piping systems deliver long service life with minimal maintenance. All products conform to international standards and are suitable for potable water, underground, and high-pressure applications.",
+    image: imgBlock3,
+    standards: ["ISO 4427", "DIN 8074", "ASTM D3035"]
+  },
+  {
+    title: "HDPE Soil, Waste & Drainage Systems",
+    description: "Arabplast manufactures HDPE soil, waste, and drainage pipes engineered for above-ground and underground drainage applications across residential, commercial, and industrial projects in the UAE. Suitable for soil, waste, and vent (SWV) piping inside buildings, underground drainage networks, and installations embedded in concrete slabs, our HDPE drainage systems deliver excellent flexibility, chemical resistance, and long service life — even in aggressive wastewater conditions. Available in a wide range of diameters, all pipes are manufactured to international drainage standards.",
+    image: imgBlock4,
+    standards: ["ISO 4427", "DIN 8074"]
+  },
+  {
+    title: "Acoustic (Soundproof) Drainage System",
+    description: "Arabplast manufactures Acoustic (Soundproof) Drainage Systems engineered to significantly reduce noise transmission in soil, waste, and drainage applications across the UAE. Available in two technologies — PP Silent Pipes with solid-wall polypropylene construction and HDPE Silent Pipes with advanced 3-layer mineral-reinforced polyethylene design — our soundproof piping systems deliver excellent acoustic insulation, high mechanical strength, and long service life. Ideal for high-rise apartments, hotels, hospitals, healthcare facilities, and commercial complexes where low-noise drainage is essential.",
+    image: imgBlock5,
+    standards: ["DIN 4109", "EN 14366"]
+  },
+  {
+    title: "Fittings & Fabricated Products",
+    description: "Arabplast offers a complete range of custom-fabricated pipe products engineered to meet specific project requirements across the UAE. Our fabrication division manufactures grease traps, gully traps, long-radius bends, sockets, couplers, flanges, adaptors, repair couplings etc — designed to match exact specifications while conforming to international standards. From standard fittings to fully bespoke piping components, every fabricated product is built with precision to integrate seamlessly into residential, commercial, and infrastructure projects.",
+    image: imgBlock1,
+    standards: ["ISO 9001", "BS 3505"]
+  }
 ];
-
-const productsByCategory = {
-  pvc: [
-    {
-      title: "Pressure Pipes (uPVC)",
-      description: " Manufactured in sizes from 20mm to 450mm, suitable for water supply, irrigation, and industrial gas systems, with pressure ratings from 4 to 16 bar",
-      image: "https://images.unsplash.com/photo-1650246363606-a2402ec42b08?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxQVkMlMjBwaXBlcyUyMHdoaXRlJTIwYmFja2dyb3VuZHxlbnwxfHx8fDE3NjQ5Mjc4Nzh8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      standards: ["ISO 161/1", "Din 8061/62", "BS 3505", "BSEN 1452-2:2009"]
-    },
-    {
-      title: "Soil, Waste & Drainage Pipes (uPVC)",
-      description: " Designed for above-ground soil and waste systems and underground sewer and drainage applications, available from 1¼ inch to 16 inch",
-      image: "https://images.unsplash.com/photo-1600065621653-2f1de87d0f43?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwcGlwZSUyMGZpdHRpbmdzfGVufDF8fHx8MTc2NDkyNzg4Mnww&ixlib=rb-4.1.0&q=80&w=1080",
-      standards: ["ISO 161/1", "Din 8061/62", "BS 3505", "BSEN 1452-2:2009"]
-    },
-    {
-      title: "Duct Pipes",
-      description: "PVC duct pipes are specifically designed for electrical and telecommunication cable protection. These rigid pipes provide excellent mechanical protection for cables in underground and above-ground installations. Their smooth interior surface allows for easy cable pulling, while the robust exterior protects against physical damage and environmental factors.",
-      image: "https://images.unsplash.com/photo-1650246363606-a2402ec42b08?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxQVkMlMjBwaXBlcyUyMHdoaXRlJTIwYmFja2dyb3VuZHxlbnwxfHx8fDE3NjQ5Mjc4Nzh8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      standards: ["ISO 161/1", "Din 8061/62", "BS 3505"]
-    },
-    {
-      title: "Duct Pipe Fittings",
-      description: "PVC duct pipe fittings complement our duct pipe range, providing complete solutions for cable management systems. Available in various configurations including bends, junctions, and couplers, these fittings ensure seamless cable routing and protection throughout your installation.",
-      image: "https://images.unsplash.com/photo-1600065621653-2f1de87d0f43?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwcGlwZSUyMGZpdHRpbmdzfGVufDF8fHx8MTc2NDkyNzg4Mnww&ixlib=rb-4.1.0&q=80&w=1080",
-      standards: ["ISO 161/1", "Din 8061/62", "BS 3505"]
-    },
-    {
-      title: "Drainage Pipes (above ground) (Grey)",
-      description: "PVC drainage pipes are engineered for efficient wastewater management in residential and commercial buildings. The grey color-coded pipes are specifically designed for above-ground drainage systems, offering excellent chemical resistance and durability for long-term performance.",
-      image: "https://images.unsplash.com/photo-1650246363606-a2402ec42b08?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxQVkMlMjBwaXBlcyUyMHdoaXRlJTIwYmFja2dyb3VuZHxlbnwxfHx8fDE3NjQ5Mjc4Nzh8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      standards: ["ISO 161/1", "Din 8061/62", "BSEN 1452-2:2009"]
-    }
-  ],
-  ppr: [
-    {
-      title: "PPR Hot & Cold Water Pipes",
-      description: "PPR pipes are ideal for hot and cold water distribution systems in residential and commercial buildings. Made from polypropylene random copolymer, these pipes offer excellent temperature resistance, durability, and hygiene standards for potable water applications.",
-      image: "https://images.unsplash.com/photo-1650246363606-a2402ec42b08?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxQVkMlMjBwaXBlcyUyMHdoaXRlJTIwYmFja2dyb3VuZHxlbnwxfHx8fDE3NjQ5Mjc4Nzh8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      standards: ["DIN 8077", "DIN 8078", "ISO 15874"]
-    },
-    {
-      title: "PPR Pipe Fittings",
-      description: "Our comprehensive range of PPR fittings includes elbows, tees, couplers, and adapters designed for heat fusion welding. These fittings ensure leak-free joints and maintain the integrity of your plumbing system for decades.",
-      image: "https://images.unsplash.com/photo-1600065621653-2f1de87d0f43?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwcGlwZSUyMGZpdHRpbmdzfGVufDF8fHx8MTc2NDkyNzg4Mnww&ixlib=rb-4.1.0&q=80&w=1080",
-      standards: ["DIN 8077", "DIN 8078", "ISO 15874"]
-    }
-  ],
-  poly: [
-    {
-      title: "HDPE Pipes",
-      description: "High-Density Polyethylene pipes offer superior flexibility and impact resistance for water supply, gas distribution, and industrial applications. These pipes are lightweight, corrosion-resistant, and suitable for underground installations.",
-      image: "https://images.unsplash.com/photo-1650246363606-a2402ec42b08?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxQVkMlMjBwaXBlcyUyMHdoaXRlJTIwYmFja2dyb3VuZHxlbnwxfHx8fDE3NjQ5Mjc4Nzh8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      standards: ["ISO 4427", "DIN 8074", "ASTM D3035"]
-    },
-    {
-      title: "PE Fittings",
-      description: "Polyethylene fittings are designed for butt fusion, electrofusion, or mechanical jointing methods. Available in various configurations to suit different installation requirements and pressure ratings.",
-      image: "https://images.unsplash.com/photo-1600065621653-2f1de87d0f43?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwcGlwZSUyMGZpdHRpbmdzfGVufDF8fHx8MTc2NDkyNzg4Mnww&ixlib=rb-4.1.0&q=80&w=1080",
-      standards: ["ISO 4427", "DIN 8074"]
-    }
-  ],
-  spacers: [
-    {
-      title: "Concrete Spacers",
-      description: "High-quality plastic spacers designed to maintain proper concrete cover for reinforcement bars. These spacers ensure structural integrity and longevity of concrete structures by preventing steel corrosion.",
-      image: "https://images.unsplash.com/photo-1722440814333-51292da1c59f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwbGFzdGljJTIwc3BhY2VycyUyMGNvbnN0cnVjdGlvbnxlbnwxfHx8fDE3NjQ5Mjc4ODh8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      standards: ["BS 7973", "EN 13670"]
-    },
-    {
-      title: "Rebar Spacers",
-      description: "Durable plastic rebar spacers available in various heights and load capacities. Suitable for walls, slabs, beams, and columns to maintain accurate reinforcement positioning during concrete pouring.",
-      image: "https://images.unsplash.com/photo-1722440814333-51292da1c59f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwbGFzdGljJTIwc3BhY2VycyUyMGNvbnN0cnVjdGlvbnxlbnwxfHx8fDE3NjQ5Mjc4ODh8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      standards: ["BS 7973", "EN 13670"]
-    }
-  ],
-  glue: [
-    {
-      title: "PVC Solvent Cement",
-      description: "Professional-grade PVC solvent cement formulated for strong, permanent joints in PVC pipe systems. Fast-setting formula ensures quick installation while maintaining superior bond strength and chemical resistance.",
-      image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZGhlc2l2ZSUyMGdsdWV8ZW58MXx8fHwxNzY0OTI3ODkyfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      standards: ["ASTM D2564", "BS 6209"]
-    },
-    {
-      title: "Power Bond Adhesive",
-      description: "High-performance adhesive suitable for bonding PVC, UPVC, and other plastic materials. Provides excellent adhesion, water resistance, and long-lasting durability for various plumbing and construction applications.",
-      image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZGhlc2l2ZSUyMGdsdWV8ZW58MXx8fHwxNzY0OTI3ODkyfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      standards: ["ASTM D2564", "ISO 9001"]
-    }
-  ]
-};
 
 const relatedProducts = [
   {
     title: "Pressure Pipes",
-    image: "https://images.unsplash.com/photo-1650246363606-a2402ec42b08?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxQVkMlMjBwaXBlcyUyMHdoaXRlJTIwYmFja2dyb3VuZHxlbnwxfHx8fDE3NjQ5Mjc4Nzh8MA&ixlib=rb-4.1.0&q=80&w=1080"
+    image: imgBlock1
   },
   {
-    title: "Spacers",
-    image: "https://images.unsplash.com/photo-1722440814333-51292da1c59f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwbGFzdGljJTIwc3BhY2VycyUyMGNvbnN0cnVjdGlvbnxlbnwxfHx8fDE3NjQ5Mjc4ODh8MA&ixlib=rb-4.1.0&q=80&w=1080"
+    title: "Conduit Pipes",
+    image: imgBlock2
   },
   {
-    title: "Pressure Pipes",
-    image: "https://images.unsplash.com/photo-1600065621653-2f1de87d0f43?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwcGlwZSUyMGZpdHRpbmdzfGVufDF8fHx8MTc2NDkyNzg4Mnww&ixlib=rb-4.1.0&q=80&w=1080"
+    title: "HDPE Pipes",
+    image: imgBlock3
   },
   {
-    title: "Spacers",
-    image: "https://images.unsplash.com/photo-1722440814333-51292da1c59f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwbGFzdGljJTIwc3BhY2VycyUyMGNvbnN0cnVjdGlvbnxlbnwxfHx8fDE3NjQ5Mjc4ODh8MA&ixlib=rb-4.1.0&q=80&w=1080"
+    title: "Drainage Systems",
+    image: imgBlock4
   }
 ];
 
@@ -126,8 +70,6 @@ interface ProductsProps {
 }
 
 export function Products({ onViewDetail }: ProductsProps) {
-  const [activeCategory, setActiveCategory] = useState("pvc");
-  const { ref: categoriesRef, isInView: categoriesInView } = useInView({ threshold: 0.2 });
   const { ref: productsRef, isInView: productsInView } = useInView({ threshold: 0.1 });
   const { ref: relatedRef, isInView: relatedInView } = useInView({ threshold: 0.2 });
 
@@ -137,138 +79,12 @@ export function Products({ onViewDetail }: ProductsProps) {
     }
   };
 
-  // Get products for the active category
-  const currentProducts = productsByCategory[activeCategory as keyof typeof productsByCategory] || [];
-
 return (
     <div className="bg-white">
-      {/* Category Tabs */}
-      <section ref={categoriesRef} className="pt-32 md:pt-40 lg:pt-44 pb-8 md:pb-12">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-          {/* Mobile: Vertical Stack - Unchanged */}
-          <div className="md:hidden flex flex-col gap-3" style={{ marginTop: 55 }}>
-            {categories.map((category, index) => (
-              <motion.button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`px-6 py-3 rounded-2xl transition-all text-left ${
-                  activeCategory === category.id
-                    ? 'bg-[rgba(14,52,61,0.75)] text-white'
-                    : 'bg-[rgba(14,52,61,0.1)] text-[#878680]'
-                }`}
-                style={{
-                  fontFamily: 'Roboto, sans-serif',
-                  fontWeight: 500,
-                  fontSize: '18px',
-                  lineHeight: '23px'
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={categoriesInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                {category.name}
-              </motion.button>
-            ))}
-          </div>
-
-          {/* Desktop/Tablet: Horizontal Scrollable Tags in One Row */}
-          <div 
-            className="hidden md:block"
-            style={{
-              overflowX: 'auto',
-              WebkitOverflowScrolling: 'touch',
-              scrollbarWidth: 'none', /* Firefox */
-              msOverflowStyle: 'none' /* IE/Edge */
-            }}
-          >
-            <div 
-              style={{
-                display: 'flex',
-                gap: '12px',
-                padding: '8px 0',
-                minWidth: 'max-content', /* Ensures all buttons stay in one row */
-                marginTop: '50px'
-              }}
-            >
-              {categories.map((category, index) => {
-                const widths = {
-                  pvc: { width: '314px' },
-                  ppr: { width: '249px' },
-                  poly: { width: '317px' },
-                  spacers: { width: '93px' },
-                  glue: { width: '230px' }
-                };
-
-                return (
-                  <motion.button
-                    key={category.id}
-                    onClick={() => setActiveCategory(category.id)}
-                    style={{
-                      height: '50px',
-                      borderRadius: '15px',
-                      flexShrink: 0,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      backgroundColor: activeCategory === category.id 
-                        ? 'rgba(14,52,61,0.75)' 
-                        : 'rgba(14,52,61,0.1)',
-                      color: activeCategory === category.id ? 'white' : '#878680',
-                      fontFamily: 'Roboto, sans-serif',
-                      fontWeight: 500,
-                      fontSize: '20px',
-                      lineHeight: '23px',
-                      ...widths[category.id as keyof typeof widths]
-                    }}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={categoriesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    whileHover={{
-                      scale: 1.05,
-                      backgroundColor: activeCategory === category.id
-                        ? 'rgba(14,52,61,0.85)'
-                        : 'rgba(14,52,61,0.15)'
-                    }}
-                    whileTap={{ scale: 0.97 }}
-                  >
-                    {category.name}
-                  </motion.button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Hide scrollbar visually */}
-          <style>{`
-            div::-webkit-scrollbar {
-              display: none;
-            }
-          `}</style>
-
-          {/* Active Category Indicator */}
-          <motion.div
-            className="mt-6 text-center md:text-left"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <p className="text-sm text-[#0e343d]/60">
-              Showing products for:{" "}
-              <span className="font-semibold text-[#0e343d]">
-                {categories.find(c => c.id === activeCategory)?.name}
-              </span>
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Products List & Related Products - unchanged */}
-      <section ref={productsRef} className="pb-16">
+      {/* Products List */}
+      <section ref={productsRef} style={{ paddingTop: '180px', paddingBottom: '64px' }}>
         <div className="max-w-7xl mx-auto px-4 space-y-8">
-          {currentProducts.map((product, index) => (
-            /* ... your existing product card code ... */
+          {products.map((product, index) => (
             <motion.div
               key={index}
               className="bg-[rgba(217,217,217,0.25)] rounded-3xl p-8 overflow-hidden"
@@ -330,15 +146,15 @@ return (
 
       {/* Related Products */}
       <section ref={relatedRef} className="py-16 bg-white">
-     <div className="max-w-7xl mx-auto px-4">
-  <motion.h2
-    className="text-4xl md:text-5xl text-[#00262f] mb-12 whitespace-nowrap text-center"
-    initial={{ opacity: 0, y: 30 }}
-    animate={relatedInView ? { opacity: 1, y: 0 } : {}}
-    transition={{ duration: 0.6 }}
-  >
-    Related Products
-  </motion.h2>
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.h2
+            className="text-4xl md:text-5xl text-[#00262f] mb-12 whitespace-nowrap text-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={relatedInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
+            Related Products
+          </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {relatedProducts.map((product, index) => (

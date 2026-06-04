@@ -7,6 +7,7 @@ import { IndustryWeServe } from './components/IndustryWeServe';
 import { Certifications } from './components/Certifications';
 import { Testimonials } from './components/Testimonials';
 import { Footer } from './components/Footer';
+import { CTABanner } from './components/CTABanner';
 import { Header } from './components/Header';
 import { AboutUs } from './components/AboutUs';
 import { Products } from './components/Products';
@@ -95,6 +96,7 @@ function AppContent() {
         <Route path="/contact" element={<ContactUs />} />
       </Routes>
       
+      <CTABanner />
       <Footer currentPage={getCurrentPage()} onNavigate={handleNavigate} />
     </div>
   );

@@ -1486,7 +1486,7 @@ export default function Home() {
         Who We Are
       </p>
       <p className="absolute font-['Roboto:Bold',sans-serif] font-bold leading-[normal] left-[calc(50%-563px)] text-[64px] text-white top-[241px] w-[663px]" style={{ fontVariationSettings: "'wdth' 100" }}>
-        Engineered for Quality. Built for Trust
+        Building stronger piping solutions for a Better Tomorrow
       </p>
       <p className="absolute font-['Roboto:Medium',sans-serif] font-medium leading-[normal] left-[calc(50%-563px)] text-[24px] text-[rgba(255,255,255,0.9)] top-[406px] w-[466px]" style={{ fontVariationSettings: "'wdth' 100" }}>
         Top-grade industrial pipes for demanding projects
@@ -1548,7 +1548,7 @@ export default function Home() {
       </div>
       <Frame />
       <p className="absolute font-['Roboto:Medium',sans-serif] font-medium leading-[normal] left-[calc(50%-495px)] text-[24px] text-[rgba(255,255,255,0.9)] top-[501px] w-[129px]" style={{ fontVariationSettings: "'wdth' 100" }}>
-        Contact Us
+        Get a quote
       </p>
       <div className="absolute aspect-[26/26] left-[8.36%] right-[89.45%] top-[calc(50%-1886px)] translate-y-[-50%]" data-name="Vector">
         <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 28 28">

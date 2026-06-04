@@ -5,6 +5,7 @@ import imgProfile from "../assets/781866a76e0692b0d058abd7158ad9889b24ea23.png";
 import svgPaths from "../imports/svg-b2esuppf8h";
 import { useState, useEffect } from "react";
 import rectangleImage from "../assets/Rectangle 44.png";
+import ourJourneyImage from "../assets/Our journey.png";
 import { Testimonials } from "./Testimonials";
 
 
@@ -113,8 +114,34 @@ export function AboutUs() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <p className="text-xl text-[#0e343d] leading-relaxed">
-              Arabplast Pipe Industries carries forward a four-decade legacy that began in 1987 with Brightway Trading and Power Building Materials — trusted distributors in the UAE's building and piping sector. In 2002, this legacy grew into manufacturing with Power Plastic Factory, founded by two brothers who turned a small PVC bend unit into a leading pipe producer. Today, Arabplast represents the next chapter: a modern, technology-driven manufacturer delivering high-quality, sustainable PVC, UPVC, HDPE, MDPE, and LDPE pipes and fittings. Based in Ajman's New Industrial Area, we serve infrastructure, construction, water management, and industrial projects with reliable, eco-conscious solutions. Backed by advanced facilities, strict quality control, and a skilled technical team, Arabplast is committed to global standards and long-term performance. Built on trust and driven by innovation, we create piping systems that strengthen infrastructure and support a smarter, more resilient future.
+              Arabplast Pipe Industries carries forward a four-decade legacy that began in 1987 with Brightway Trading and Power Building Materials — trusted distributors in the UAE's building and piping sector. In 2002, this legacy grew into manufacturing with Power Plastic Factory, founded by two brothers who turned a small PVC bend unit into a leading pipe producer. Today, Arabplast represents the next chapter: a modern, technology-driven manufacturer delivering high-quality, sustainable PVC, UPVC, HDPE, MDPE, and LDPE pipes and fittings. Based in Ajman's Industrial Area 1, we serve infrastructure, construction, water management, and industrial projects with reliable, eco-conscious solutions. Backed by advanced facilities, strict quality control, and a skilled technical team, Arabplast is committed to global standards and long-term performance. Built on trust and driven by innovation, we create piping systems that strengthen infrastructure and support a smarter, more resilient future.
             </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Our Journey */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            className="text-center mb-10"
+            initial={{ opacity: 0, y: 30 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
+
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="rounded-2xl overflow-hidden shadow-xl"
+          >
+            <img
+              src={ourJourneyImage}
+              alt="Our Journey"
+              className="w-full h-auto object-cover"
+            />
           </motion.div>
         </div>
       </section>

@@ -1,6 +1,6 @@
 import imgLogo from "../assets/logo (1).png";
 import { motion, AnimatePresence } from "motion/react";
-import { Facebook, Twitter, Instagram, Linkedin, Phone, Mail, MapPin, Menu, X } from "lucide-react";
+import { Instagram, Linkedin, Phone, Mail, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 interface HeaderProps {
@@ -28,13 +28,14 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
 
   return (
     <motion.header
-      className="fixed top-0 left-0 right-0 z-50 bg-[#00262f] shadow-lg"
+      className="fixed top-0 left-0 right-0 z-50 shadow-lg"
+      style={{ backgroundColor: 'rgb(7, 20, 47)' }}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
       {/* Top Bar */}
-      <div className="bg-[#00262f] border-b border-[rgba(255,255,255,0.1)]">
+      <div className="border-b border-[rgba(255,255,255,0.1)]" style={{ backgroundColor: 'rgb(7, 20, 47)' }}>
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
@@ -51,7 +52,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
             <div className="flex items-center gap-6 lg:gap-8">
               {/* Social Icons - Visible on sm and up */}
               <div className="hidden sm:flex items-center gap-3">
-                {[Facebook, Twitter, Instagram, Linkedin].map((Icon, index) => (
+                {[Instagram, Linkedin].map((Icon, index) => (
                   <motion.a
                     key={index}
                     href="#"
@@ -62,7 +63,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <Icon className="w-3 h-3 md:w-4 md:h-4 text-[#00262f]" />
+                    <Icon className="w-3 h-3 md:w-4 md:h-4 text-[#002B7F]" />
                   </motion.a>
                 ))}
               </div>
@@ -77,10 +78,10 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                   <div>
                     <p className="text-xs">Call anytime</p>
                     <a
-                      href="tel:+980009630"
+                      href="tel:+97167317334"
                       className="text-sm text-white hover:text-[#4baf47] transition-colors"
                     >
-                      +98 (000) - 9630
+                      +971 6 731 7334
                     </a>
                   </div>
                 </motion.div>
@@ -101,21 +102,6 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                     </a>
                   </div>
                 </motion.div>
-
-                {/* Address */}
-                <motion.div
-                  className="flex items-center gap-3 border-l border-white/20 pl-8"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <MapPin className="w-5 h-5 text-[#4baf47]" />
-                  <div>
-                    <p className="text-xs">Visit us</p>
-                    <p className="text-sm text-white">
-                      New industrial area 1, Ajman, UAE
-                    </p>
-                  </div>
-                </motion.div>
-
               </div>
 
               {/* Mobile Menu Button */}
@@ -125,9 +111,9 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                 whileTap={{ scale: 0.95 }}
               >
                 {isMobileMenuOpen ? (
-                  <X className="w-5 h-5 text-[#00262f]" />
+                  <X className="w-5 h-5 text-[#002B7F]" />
                 ) : (
-                  <Menu className="w-5 h-5 text-[#00262f]" />
+                  <Menu className="w-5 h-5 text-[#002B7F]" />
                 )}
               </motion.button>
             </div>
@@ -187,9 +173,10 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                       key={item.name}
                       onClick={() => handleNavigate(item.page)}
                       className={`${isActive
-                        ? 'text-white bg-[#00262f]'
-                        : 'text-[#00262f] bg-white hover:bg-[#f8f7f0]'
+                        ? 'text-white'
+                        : 'text-[#002B7F] bg-white hover:bg-[#f8f7f0]'
                         } px-4 py-3 rounded-lg text-left transition-colors`}
+                      style={isActive ? { backgroundColor: '#002B7F' } : {}}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -20 }}
@@ -208,32 +195,24 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
               >
-                <div className="flex items-center gap-3 text-[#00262f]">
+                <div className="flex items-center gap-3 text-[#002B7F]">
                   <Phone className="w-4 h-4 text-[#4baf47]" />
                   <div>
                     <p className="text-xs text-gray-600">Call anytime</p>
-                    <p className="text-sm">+ 98 (000) - 9630</p>
+                    <a href="tel:+97167317334" className="text-sm text-[#002B7F] hover:text-[#4baf47]">+971 6 731 7334</a>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 text-[#00262f]">
+                <div className="flex items-center gap-3 text-[#002B7F]">
                   <Mail className="w-4 h-4 text-[#4baf47]" />
                   <div>
                     <p className="text-xs text-gray-600">Send email</p>
-                    <p className="text-sm">ambed@agrios.com</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3 text-[#00262f]">
-                  <MapPin className="w-4 h-4 text-[#4baf47]" />
-                  <div>
-                    <p className="text-xs text-gray-600">380 St Kilda Road</p>
-                    <p className="text-sm">Melbourne, Australia</p>
+                    <a href="mailto:info@arabplastpipes.com" className="text-sm text-[#002B7F] hover:text-[#4baf47]">info@arabplastpipes.com</a>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 pt-4">
-                  {[Facebook, Twitter, Instagram, Linkedin].map((Icon, index) => (
+                  {[Instagram, Linkedin].map((Icon, index) => (
                     <motion.a
                       key={index}
                       href="#"
@@ -244,7 +223,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.5 + index * 0.1 }}
                     >
-                      <Icon className="w-4 h-4 text-[#00262f]" />
+                      <Icon className="w-4 h-4 text-[#002B7F]" />
                     </motion.a>
                   ))}
                 </div>
