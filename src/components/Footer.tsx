@@ -1,11 +1,6 @@
 import { motion } from "motion/react";
 import imgLogo from "../assets/logo (1).png";
-import {
-  Phone,
-  Mail,
-  MapPin,
-  Linkedin,
-} from "lucide-react";
+import { Phone, Mail, MapPin, Linkedin } from "lucide-react";
 
 interface FooterProps {
   currentPage?: "home" | "about" | "products" | "services" | "applications" | "catalogue" | "contact";
@@ -24,63 +19,102 @@ export function Footer({ onNavigate }: FooterProps) {
     }
   };
 
-  return (
-    <footer style={{ backgroundColor: 'rgb(7, 20, 47)' }} className="text-white font-sans">
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12">
+  const quickLinks = [
+    { label: "Home", page: "home" as const },
+    { label: "About Us", page: "about" as const },
+    { label: "Products", page: "products" as const },
+    { label: "Catalog", page: "catalogue" as const },
+    { label: "Contact Us", page: "contact" as const },
+  ];
 
-          {/* Column 1: Logo & Info (4 cols) */}
+  const products = [
+    "PVC/uPVC Piping Solutions",
+    "Conduit & Duct Piping Systems",
+    "Polyethylene Pipes",
+    "HDPE Soil, Waste & Drainage Systems",
+    "Acoustic (Soundproof) Drainage Systems",
+    "Fittings & Fabricated Products",
+  ];
+
+  return (
+    <footer style={{ backgroundColor: "rgb(7, 20, 47)", fontFamily: "Inter, sans-serif" }} className="text-white">
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '80px 24px 64px 24px' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: '40px' }}>
+          {/* ── Column 1: Logo + Tagline + Social ── */}
           <motion.div
-            className="lg:col-span-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <a className="inline-block mb-6 cursor-pointer" onClick={() => handleNavigation("home")}>
-              <img src={imgLogo} alt="Arabplast" className="h-16 w-auto" />
+            <a
+              className="inline-block mb-5 cursor-pointer"
+              onClick={() => handleNavigation("home")}
+            >
+              <img src={imgLogo} alt="Arabplast" style={{ height: "56px", width: "auto" }} />
             </a>
 
-            <p className="text-white/80 leading-relaxed mb-6 text-sm max-w-sm">
-              Advanced piping solutions engineered for a better tomorrow.
+            <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "14px", lineHeight: "1.7", marginBottom: "20px" }}>
+              Advanced piping solutions<br />engineered for a better tomorrow.
             </p>
 
-            <div className="flex gap-3">
-              <motion.a
-                href="#"
-                className="w-10 h-10 border border-white/40 rounded-full flex items-center justify-center group hover:bg-white transition-all"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Linkedin className="w-4 h-4 text-white group-hover:text-[#002B7F] transition-colors" />
-              </motion.a>
-            </div>
+            {/* LinkedIn icon */}
+            <motion.a
+              href="#"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "36px",
+                height: "36px",
+                borderRadius: "50%",
+                border: "1.5px solid rgba(255,255,255,0.4)",
+              }}
+            >
+              <Linkedin style={{ width: "16px", height: "16px", color: "white" }} />
+            </motion.a>
           </motion.div>
 
-          {/* Column 2: Quick Links (2 cols) */}
+          {/* ── Column 2: Quick Links ── */}
           <motion.div
-            className="lg:col-span-2"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
+            style={{ paddingTop: '8px' }}
           >
-            <h3 className="text-sm font-bold tracking-wider text-white mb-6 uppercase">
+            <h3
+              style={{
+                fontSize: "13px",
+                fontWeight: 700,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: "white",
+                marginBottom: "20px",
+              }}
+            >
               Quick Links
             </h3>
 
-            <ul className="space-y-3 text-white/80 text-sm">
-              {[
-                { label: "Home", page: "home" },
-                { label: "About Us", page: "about" },
-                { label: "Products", page: "products" },
-                { label: "Catalog", page: "catalogue" },
-                { label: "Contact Us", page: "contact" },
-              ].map((item) => (
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
+              {quickLinks.map((item) => (
                 <li key={item.label}>
                   <button
-                    onClick={() => handleNavigation(item.page as any)}
-                    className="hover:text-white hover:underline transition-all text-left"
+                    onClick={() => handleNavigation(item.page)}
+                    style={{
+                      background: "none",
+                      border: "none",
+                      color: "rgba(255,255,255,0.75)",
+                      fontSize: "14px",
+                      cursor: "pointer",
+                      padding: 0,
+                      textAlign: "left",
+                      transition: "color 0.2s",
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
                   >
                     {item.label}
                   </button>
@@ -89,31 +123,43 @@ export function Footer({ onNavigate }: FooterProps) {
             </ul>
           </motion.div>
 
-          {/* Column 3: Our Products (3 cols) */}
+          {/* ── Column 3: Our Products ── */}
           <motion.div
-            className="lg:col-span-3"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h3 className="text-sm font-bold tracking-wider text-white mb-6 uppercase">
+            <h3
+              style={{
+                fontSize: "13px",
+                fontWeight: 700,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: "white",
+                marginBottom: "20px",
+              }}
+            >
               Our Products
             </h3>
 
-            <ul className="space-y-3 text-white/80 text-sm">
-              {[
-                "PVC/uPVC Piping Solutions",
-                "Conduit & Duct Piping Systems",
-                "Polyethylene Pipes",
-                "HDPE Soil, Waste & Drainage Systems",
-                "Acoustic (Soundproof) Drainage Systems",
-                "Fittings & Fabricated Products"
-              ].map((item) => (
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
+              {products.map((item) => (
                 <li key={item}>
                   <button
                     onClick={() => handleNavigation("products")}
-                    className="hover:text-white hover:underline transition-all text-left"
+                    style={{
+                      background: "none",
+                      border: "none",
+                      color: "rgba(255,255,255,0.75)",
+                      fontSize: "14px",
+                      cursor: "pointer",
+                      padding: 0,
+                      textAlign: "left",
+                      transition: "color 0.2s",
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
                   >
                     {item}
                   </button>
@@ -122,58 +168,77 @@ export function Footer({ onNavigate }: FooterProps) {
             </ul>
           </motion.div>
 
-          {/* Column 4: Contact Us (3 cols) */}
+          {/* ── Column 4: Contact Us ── */}
           <motion.div
-            className="lg:col-span-3"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <h3 className="text-sm font-bold tracking-wider text-white mb-6 uppercase">
+            <h3
+              style={{
+                fontSize: "13px",
+                fontWeight: 700,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: "white",
+                marginBottom: "20px",
+              }}
+            >
               Contact Us
             </h3>
 
-            <div className="space-y-4 text-white/80 text-sm">
-              <div className="flex gap-3 items-start">
-                <MapPin className="w-4 h-4 text-white/90 mt-1 flex-shrink-0" />
-                <span>
-                  Industrial Area 1, Ajman,<br />
-                  United Arab Emirates
+            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+              {/* Address */}
+              <div style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
+                <MapPin style={{ width: "16px", height: "16px", color: "rgba(255,255,255,0.85)", flexShrink: 0, marginTop: "2px" }} />
+                <span style={{ color: "rgba(255,255,255,0.75)", fontSize: "14px", lineHeight: "1.6" }}>
+                  Industrial Area 1, Ajman,<br />United Arab Emirates
                 </span>
               </div>
 
-              <div className="flex gap-3 items-center">
-                <Phone className="w-4 h-4 text-white/90 flex-shrink-0" />
+              {/* Phone */}
+              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <Phone style={{ width: "16px", height: "16px", color: "rgba(255,255,255,0.85)", flexShrink: 0 }} />
                 <a
                   href="tel:+97167317334"
-                  className="hover:text-white transition-colors"
+                  style={{ color: "rgba(255,255,255,0.75)", fontSize: "14px", textDecoration: "none", transition: "color 0.2s" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
                 >
                   +971 6 731 7334
                 </a>
               </div>
 
-              <div className="flex gap-3 items-center">
-                <Mail className="w-4 h-4 text-white/90 flex-shrink-0" />
+              {/* Email */}
+              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <Mail style={{ width: "16px", height: "16px", color: "rgba(255,255,255,0.85)", flexShrink: 0 }} />
                 <a
                   href="mailto:info@arabplastpipes.com"
-                  className="hover:text-white transition-colors"
+                  style={{ color: "rgba(255,255,255,0.75)", fontSize: "14px", textDecoration: "none", transition: "color 0.2s" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
                 >
                   info@arabplastpipes.com
                 </a>
               </div>
             </div>
           </motion.div>
-
         </div>
       </div>
 
-      {/* Bottom Copyright Bar */}
-      <div style={{ backgroundColor: 'rgb(5, 14, 33)' }} className="py-6 border-t border-white/10 text-white/60 text-xs">
-        <div className="max-w-7xl mx-auto px-6 text-center md:text-left">
-          <span>
+      {/* ── Bottom Bar ── */}
+      <div
+        style={{
+          borderTop: "1px solid rgba(255,255,255,0.1)",
+          backgroundColor: "rgb(5, 14, 33)",
+          padding: "20px 24px",
+        }}
+      >
+        <div className="max-w-7xl mx-auto">
+          <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "13px", margin: 0 }}>
             © 2024 Arabplast Pipe Industries. All Rights Reserved.
-          </span>
+          </p>
         </div>
       </div>
     </footer>
