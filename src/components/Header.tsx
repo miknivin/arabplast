@@ -4,8 +4,8 @@ import { Instagram, Linkedin, Phone, Mail, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 interface HeaderProps {
-  currentPage: 'home' | 'about' | 'products' | 'services' | 'applications' | 'catalogue' | 'contact';
-  onNavigate: (page: 'home' | 'about' | 'products' | 'services' | 'applications' | 'catalogue' | 'contact') => void;
+  currentPage: 'home' | 'about' | 'products' | 'services' | 'applications' | 'contact';
+  onNavigate: (page: 'home' | 'about' | 'products' | 'services' | 'applications' | 'contact') => void;
 }
 
 export function Header({ currentPage, onNavigate }: HeaderProps) {
@@ -17,7 +17,6 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
     { name: 'Products', page: 'products' as const },
     { name: 'Services', page: 'services' as const },
     { name: 'Applications', page: 'applications' as const },
-    { name: 'Catalogue', page: 'catalogue' as const },
     { name: 'Contact Us', page: 'contact' as const },
   ];
 

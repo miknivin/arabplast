@@ -14,7 +14,6 @@ import { Products } from './components/Products';
 import { ProductDetail } from './components/ProductDetail';
 import { Services } from './components/Services';
 import { Applications } from './components/Applications';
-import { Catalogue } from './components/Catalogue';
 import { ContactUs } from './components/ContactUs';
 
 function HomePage() {
@@ -56,26 +55,24 @@ function AppContent() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [location.pathname]);
 
-  const getCurrentPage = (): 'home' | 'about' | 'products' | 'services' | 'applications' | 'catalogue' | 'contact' => {
+  const getCurrentPage = (): 'home' | 'about' | 'products' | 'services' | 'applications' | 'contact' => {
     const path = location.pathname;
     if (path === '/') return 'home';
     if (path.startsWith('/about')) return 'about';
     if (path.startsWith('/products')) return 'products';
     if (path.startsWith('/services')) return 'services';
     if (path.startsWith('/applications')) return 'applications';
-    if (path.startsWith('/catalogue')) return 'catalogue';
     if (path.startsWith('/contact')) return 'contact';
     return 'home';
   };
 
-  const handleNavigate = (page: 'home' | 'about' | 'products' | 'services' | 'applications' | 'catalogue' | 'contact') => {
+  const handleNavigate = (page: 'home' | 'about' | 'products' | 'services' | 'applications' | 'contact') => {
     const routes: Record<string, string> = {
       home: '/',
       about: '/about',
       products: '/products',
       services: '/services',
       applications: '/applications',
-      catalogue: '/catalogue',
       contact: '/contact'
     };
     navigate(routes[page]);
@@ -92,7 +89,6 @@ function AppContent() {
         <Route path="/products/:productName" element={<ProductDetailPage />} />
         <Route path="/services" element={<Services />} />
         <Route path="/applications" element={<Applications />} />
-        <Route path="/catalogue" element={<Catalogue />} />
         <Route path="/contact" element={<ContactUs />} />
       </Routes>
       
