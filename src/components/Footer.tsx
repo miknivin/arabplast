@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import imgLogo from "../assets/logo (1).png";
-import { Phone, Mail, MapPin, Linkedin } from "lucide-react";
+import { Phone, Mail, MapPin, Linkedin, Instagram } from "lucide-react";
 
 interface FooterProps {
   currentPage?: "home" | "about" | "products" | "services" | "applications" | "contact";
@@ -57,23 +57,45 @@ export function Footer({ onNavigate }: FooterProps) {
               Advanced piping solutions<br />engineered for a better tomorrow.
             </p>
 
-            {/* LinkedIn icon */}
-            <motion.a
-              href="#"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "36px",
-                height: "36px",
-                borderRadius: "50%",
-                border: "1.5px solid rgba(255,255,255,0.4)",
-              }}
-            >
-              <Linkedin style={{ width: "16px", height: "16px", color: "white" }} />
-            </motion.a>
+            {/* Social Icons */}
+            <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+              <motion.a
+                href="https://www.instagram.com/arabplastpipes?igsh=OXkwbGV2ZzU4cHR3"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.15 }}
+                whileTap={{ scale: 0.95 }}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "36px",
+                  height: "36px",
+                  borderRadius: "50%",
+                  border: "1.5px solid rgba(255,255,255,0.4)",
+                }}
+              >
+                <Instagram style={{ width: "16px", height: "16px", color: "white" }} />
+              </motion.a>
+              <motion.a
+                href="https://www.linkedin.com/company/arabplast-pipe-industries/"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.15 }}
+                whileTap={{ scale: 0.95 }}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "36px",
+                  height: "36px",
+                  borderRadius: "50%",
+                  border: "1.5px solid rgba(255,255,255,0.4)",
+                }}
+              >
+                <Linkedin style={{ width: "16px", height: "16px", color: "white" }} />
+              </motion.a>
+            </div>
           </motion.div>
 
           {/* ── Column 2: Quick Links ── */}

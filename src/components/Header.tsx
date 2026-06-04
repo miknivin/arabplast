@@ -20,6 +20,11 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
     { name: 'Contact Us', page: 'contact' as const },
   ];
 
+  const socialLinks = [
+    { icon: Instagram, url: "https://www.instagram.com/arabplastpipes?igsh=OXkwbGV2ZzU4cHR3" },
+    { icon: Linkedin, url: "https://www.linkedin.com/company/arabplast-pipe-industries/" }
+  ];
+
   const handleNavigate = (page: typeof currentPage) => {
     onNavigate(page);
     setIsMobileMenuOpen(false);
@@ -51,10 +56,12 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
             <div className="flex items-center gap-6 lg:gap-8">
               {/* Social Icons - Visible on sm and up */}
               <div className="hidden sm:flex items-center gap-3">
-                {[Instagram, Linkedin].map((Icon, index) => (
+                {socialLinks.map(({ icon: Icon, url }, index) => (
                   <motion.a
                     key={index}
-                    href="#"
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-8 h-8 md:w-10 md:h-10 bg-[#f8f7f0] rounded-full flex items-center justify-center"
                     whileHover={{ scale: 1.15, rotate: 5 }}
                     whileTap={{ scale: 0.95 }}
@@ -211,10 +218,12 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                 </div>
 
                 <div className="flex items-center gap-3 pt-4">
-                  {[Instagram, Linkedin].map((Icon, index) => (
+                  {socialLinks.map(({ icon: Icon, url }, index) => (
                     <motion.a
                       key={index}
-                      href="#"
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="w-10 h-10 bg-[#f8f7f0] rounded-full flex items-center justify-center"
                       whileHover={{ scale: 1.15, rotate: 5 }}
                       whileTap={{ scale: 0.95 }}
