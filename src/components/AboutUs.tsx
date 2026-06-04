@@ -6,7 +6,7 @@ import svgPaths from "../imports/svg-b2esuppf8h";
 import { useState, useEffect } from "react";
 import rectangleImage from "../assets/Rectangle 44.png";
 import ourJourneyImage from "../assets/Our journey.png";
-import { Testimonials } from "./Testimonials";
+// import { Testimonials } from "./Testimonials";
 
 
 const values = [
@@ -365,7 +365,7 @@ export function AboutUs() {
         </div>
       </section>
 
-      <Testimonials />
+      {/* <Testimonials /> */}
     </div>
   );
 }

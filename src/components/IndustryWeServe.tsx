@@ -5,6 +5,7 @@ import imgBlock2 from "../assets/blocks/block2.webp";
 import imgBlock3 from "../assets/blocks/block3.png";
 import imgBlock4 from "../assets/blocks/block 4.png";
 import imgBlock5 from "../assets/blocks/block 5.png";
+import imgBlock6 from "../assets/blocks/block6.png";
 
 const products = [
   {
@@ -26,6 +27,10 @@ const products = [
   {
     title: "Acoustic (Soundproof) Drainage Systems",
     image: imgBlock5
+  },
+  {
+    title: "Fittings & Fabricated Products",
+    image: imgBlock6
   }
 ];
 

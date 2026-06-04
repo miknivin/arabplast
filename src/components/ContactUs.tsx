@@ -8,6 +8,17 @@ export function ContactUs() {
   const { ref: titleRef, isInView: titleInView } = useInView({ threshold: 0.5 });
   const { ref: formRef, isInView: formInView } = useInView({ threshold: 0.2 });
 
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    subject: ''
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
   useEffect(() => {
     const handleResize = () => {
       setIsDesktop(window.innerWidth >= 768);
@@ -19,14 +30,6 @@ export function ContactUs() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    subject: ''
-  });
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
@@ -36,14 +39,43 @@ export function ContactUs() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission
+
+    // Basic validation
+    if (!formData.firstName || !formData.email || !formData.subject) {
+      setErrorMessage("Please fill in all required fields (First Name, Email, and Subject).");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setErrorMessage('');
+
+    const name = `${formData.firstName} ${formData.lastName}`.trim();
+    const mailtoUrl = `mailto:info@arabplastpipes.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nMessage:\n${formData.subject}`)}`;
+
+    // Redirect to open email client using a temporary link click
+    const link = document.createElement('a');
+    link.href = mailtoUrl;
+    link.click();
+
+    // Reset form after a short delay
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        subject: ''
+      });
+    }, 100);
   };
 
   return (
     <div className="bg-white relative overflow-hidden min-h-screen"
       style={{ marginTop: isDesktop ? "121px" : "55px" }}
     >
+
+
       {/* Decorative Wave Patterns - Rotated 102.41deg */}
       <div className="absolute inset-0 opacity-25 pointer-events-none overflow-hidden">
         <div className="absolute left-[-821px] top-[202px] w-[1122px] h-[1978px]" style={{ transform: 'rotate(102.41deg)' }}>
@@ -71,17 +103,7 @@ export function ContactUs() {
         </div>
       </div>
 
-      {/* Gradient Background Overlay */}
-      <div
-        className="absolute bg-gradient-to-b from-[rgba(1,50,62,0.125)] to-[rgba(255,255,255,0.5)] transform rotate-180 pointer-events-none"
-        style={{
-          top: '235px',
-          left: '50%',
-          transform: 'translateX(-50%) rotate(180deg)',
-          width: '1289px',
-          height: '1173px'
-        }}
-      />
+
 
       <div className="relative z-10">
         {/* Title Section */}
@@ -117,6 +139,12 @@ export function ContactUs() {
               transition={{ duration: 0.6 }}
             >
               <form onSubmit={handleSubmit} className="space-y-8">
+                {errorMessage && (
+                  <div className="p-4 bg-red-50 border border-red-100 text-red-600 rounded-2xl text-lg">
+                    {errorMessage}
+                  </div>
+                )}
+
                 {/* First Row - First Name & Last Name */}
                 <div className="grid md:grid-cols-2 gap-6">
                   <motion.div
@@ -129,7 +157,8 @@ export function ContactUs() {
                       name="firstName"
                       value={formData.firstName}
                       onChange={handleChange}
-                      placeholder="First Name"
+                      placeholder="First Name *"
+                      required
                       className="w-full h-14 px-6 bg-[rgba(199,199,199,0.1)] border-[0.5px] border-[#c7c7c7] rounded-2xl text-xl text-[#00262f] placeholder-[#00262f]/25 focus:outline-none focus:ring-2 focus:ring-[#4baf47] transition-all"
                     />
                   </motion.div>
@@ -162,7 +191,8 @@ export function ContactUs() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder="Email Address"
+                      placeholder="Email Address *"
+                      required
                       className="w-full h-14 px-6 bg-[rgba(199,199,199,0.1)] border-[0.5px] border-[#c7c7c7] rounded-2xl text-xl text-[#00262f] placeholder-[#00262f]/25 focus:outline-none focus:ring-2 focus:ring-[#4baf47] transition-all"
                     />
                   </motion.div>
@@ -193,8 +223,9 @@ export function ContactUs() {
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    placeholder="Subject"
+                    placeholder="Subject *"
                     rows={6}
+                    required
                     className="w-full px-6 py-4 bg-[rgba(199,199,199,0.1)] border-[0.5px] border-[#c7c7c7] rounded-2xl text-xl text-[#00262f] placeholder-[#00262f]/25 focus:outline-none focus:ring-2 focus:ring-[#4baf47] transition-all resize-none"
                   />
                 </motion.div>
@@ -208,11 +239,12 @@ export function ContactUs() {
                 >
                   <motion.button
                     type="submit"
-                    className="flex items-center gap-3 px-10 py-4 bg-[#0e343d] text-white rounded-2xl hover:bg-[#4baf47] transition-colors"
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
+                    disabled={isSubmitting}
+                    className="flex items-center gap-3 px-10 py-4 bg-[#0e343d] text-white rounded-2xl hover:bg-[#4baf47] disabled:bg-gray-400 transition-colors cursor-pointer"
+                    whileHover={{ scale: isSubmitting ? 1 : 1.05, y: isSubmitting ? 0 : -2 }}
+                    whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                   >
-                    <span className="text-xl">Send Now</span>
+                    <span className="text-xl">{isSubmitting ? "Sending..." : "Send Now"}</span>
                     <Send className="w-5 h-5" />
                   </motion.button>
                 </motion.div>

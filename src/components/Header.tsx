@@ -4,8 +4,8 @@ import { Instagram, Linkedin, Phone, Mail, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 interface HeaderProps {
-  currentPage: 'home' | 'about' | 'products' | 'services' | 'applications' | 'contact';
-  onNavigate: (page: 'home' | 'about' | 'products' | 'services' | 'applications' | 'contact') => void;
+  currentPage: 'home' | 'about' | 'products' | 'services' | 'applications' | 'downloads' | 'contact';
+  onNavigate: (page: 'home' | 'about' | 'products' | 'services' | 'applications' | 'downloads' | 'contact') => void;
 }
 
 export function Header({ currentPage, onNavigate }: HeaderProps) {
@@ -17,6 +17,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
     { name: 'Products', page: 'products' as const },
     { name: 'Services', page: 'services' as const },
     { name: 'Applications', page: 'applications' as const },
+    { name: 'Downloads', page: 'downloads' as const },
     { name: 'Contact Us', page: 'contact' as const },
   ];
 
@@ -80,12 +81,12 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                   className="flex items-center gap-3 border-l border-white/20 pl-8"
                   whileHover={{ scale: 1.05 }}
                 >
-                  <Phone className="w-5 h-5 text-[#4baf47]" />
+                  <Phone className="w-5 h-5 text-white" />
                   <div>
-                    <p className="text-xs">Call anytime</p>
+                    <p className="text-xs">Call</p>
                     <a
                       href="tel:+97167317334"
-                      className="text-sm text-white hover:text-[#4baf47] transition-colors"
+                      className="text-sm text-white hover:text-[#60a5fa] transition-colors"
                     >
                       +971 6 731 7334
                     </a>
@@ -97,12 +98,12 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                   className="flex items-center gap-3 border-l border-white/20 pl-8"
                   whileHover={{ scale: 1.05 }}
                 >
-                  <Mail className="w-5 h-5 text-[#4baf47]" />
+                  <Mail className="w-5 h-5 text-white" />
                   <div>
                     <p className="text-xs">Send email</p>
                     <a
                       href="mailto:info@arabplastpipes.com"
-                      className="text-sm text-white hover:text-[#4baf47] transition-colors"
+                      className="text-sm text-white hover:text-[#60a5fa] transition-colors"
                     >
                       info@arabplastpipes.com
                     </a>
@@ -138,8 +139,8 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                 <motion.button
                   key={item.name}
                   onClick={() => handleNavigate(item.page)}
-                  className={`${isActive ? 'text-[#4baf47]' : 'text-black-600'
-                    } hover:text-[#4baf47] font-medium transition-colors relative group text-sm lg:text-base px-1 py-2`}
+                  className={`${isActive ? 'text-[#002B7F]' : 'text-black-600'
+                    } hover:text-[#002B7F] font-medium transition-colors relative group text-sm lg:text-base px-1 py-2`}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 + index * 0.05 }}
@@ -147,7 +148,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                 >
                   {item.name}
                   <motion.span
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#4baf47]"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#002B7F]"
                     initial={{ scaleX: isActive ? 1 : 0 }}
                     whileHover={{ scaleX: 1 }}
                     transition={{ duration: 0.3 }}
@@ -202,18 +203,18 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                 transition={{ delay: 0.4 }}
               >
                 <div className="flex items-center gap-3 text-[#002B7F]">
-                  <Phone className="w-4 h-4 text-[#4baf47]" />
+                  <Phone className="w-4 h-4 text-[#002B7F]" />
                   <div>
-                    <p className="text-xs text-gray-600">Call anytime</p>
-                    <a href="tel:+97167317334" className="text-sm text-[#002B7F] hover:text-[#4baf47]">+971 6 731 7334</a>
+                    <p className="text-xs text-gray-600">Call</p>
+                    <a href="tel:+97167317334" className="text-sm text-[#002B7F] hover:text-[#002B7F]/80">+971 6 731 7334</a>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 text-[#002B7F]">
-                  <Mail className="w-4 h-4 text-[#4baf47]" />
+                  <Mail className="w-4 h-4 text-[#002B7F]" />
                   <div>
                     <p className="text-xs text-gray-600">Send email</p>
-                    <a href="mailto:info@arabplastpipes.com" className="text-sm text-[#002B7F] hover:text-[#4baf47]">info@arabplastpipes.com</a>
+                    <a href="mailto:info@arabplastpipes.com" className="text-sm text-[#002B7F] hover:text-[#002B7F]/80">info@arabplastpipes.com</a>
                   </div>
                 </div>
 

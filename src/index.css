@@ -2288,3 +2288,20 @@ html {
   inherits: false;
   initial-value: 1;
 }
+
+/* Custom Blue Styles for Header Navigation and Hover Links */
+.text-\[\#002B7F\] {
+  color: #002B7F !important;
+}
+.hover\:text-\[\#002B7F\]:hover {
+  color: #002B7F !important;
+}
+.bg-\[\#002B7F\] {
+  background-color: #002B7F !important;
+}
+.hover\:text-\[\#60a5fa\]:hover {
+  color: #60a5fa !important;
+}
+.hover\:text-\[\#002B7F\]\/80:hover {
+  color: rgba(0, 43, 127, 0.8) !important;
+}

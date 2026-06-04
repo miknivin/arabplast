@@ -6,7 +6,7 @@ import imgBlock2 from "../assets/blocks/block2.webp";
 import imgBlock3 from "../assets/blocks/block3.png";
 import imgBlock4 from "../assets/blocks/block 4.png";
 import imgBlock5 from "../assets/blocks/block 5.png";
-
+import imgBlock6 from "../assets/blocks/block6.png";
 const products = [
   {
     title: "PVC/uPVC Piping Solutions",
@@ -41,7 +41,7 @@ const products = [
   {
     title: "Fittings & Fabricated Products",
     description: "Arabplast offers a complete range of custom-fabricated pipe products engineered to meet specific project requirements across the UAE. Our fabrication division manufactures grease traps, gully traps, long-radius bends, sockets, couplers, flanges, adaptors, repair couplings etc — designed to match exact specifications while conforming to international standards. From standard fittings to fully bespoke piping components, every fabricated product is built with precision to integrate seamlessly into residential, commercial, and infrastructure projects.",
-    image: imgBlock1,
+    image: imgBlock6,
     standards: ["ISO 9001", "BS 3505"]
   }
 ];
@@ -79,7 +79,7 @@ export function Products({ onViewDetail }: ProductsProps) {
     }
   };
 
-return (
+  return (
     <div className="bg-white">
       {/* Products List */}
       <section ref={productsRef} style={{ paddingTop: '180px', paddingBottom: '64px' }}>
@@ -111,7 +111,7 @@ return (
                     transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}>
                     {product.description}
                   </motion.p>
-                  <div className="flex flex-wrap items-center gap-3">
+                  {/* <div className="flex flex-wrap items-center gap-3">
                     <motion.button
                       onClick={() => handleViewMore(product.title)}
                       className="bg-[#0e343d] text-white px-8 py-3 rounded-2xl flex items-center gap-2 group"
@@ -136,7 +136,7 @@ return (
                         <span className="text-sm text-[#00262f]">{standard}</span>
                       </motion.div>
                     ))}
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </motion.div>
@@ -145,7 +145,7 @@ return (
       </section>
 
       {/* Related Products */}
-      <section ref={relatedRef} className="py-16 bg-white">
+      {/* <section ref={relatedRef} className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <motion.h2
             className="text-4xl md:text-5xl text-[#00262f] mb-12 whitespace-nowrap text-center"
@@ -190,7 +190,7 @@ return (
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }
