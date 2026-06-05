@@ -16,11 +16,11 @@ const items = [
     image: imgWaterSupply,
   },
   {
-    title: "Agricultural\nIrrigation",
+    title: "Agricultural &\nIrrigation",
     image: imgIrrigation,
   },
   {
-    title: "Soil & Waste\nDischarge",
+    title: "Soil & Waste\nSystems",
     image: imgSoilWaste,
   },
   {
@@ -28,7 +28,7 @@ const items = [
     image: imgSewerage,
   },
   {
-    title: "Electrical & Telecom\nConduits",
+    title: "Electrical & Telecom\nIndustry",
     image: imgTelecom,
   },
   {
@@ -89,7 +89,7 @@ export function InfrastructureApplications() {
       style={{ paddingTop: "80px", paddingBottom: "160px" }}
     >
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        
+
         {/* Title */}
         <motion.div
           className="text-center mb-16"
@@ -140,7 +140,7 @@ export function InfrastructureApplications() {
           /* Mobile & Tablet Slider View (Only dots navigation) */
           <div className="relative flex flex-col items-center w-full">
             <div className="w-full flex items-center justify-center">
-              
+
               {/* Slider Items Container */}
               <div className="flex-1 overflow-hidden py-6">
                 <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-gray-150">
@@ -181,9 +181,8 @@ export function InfrastructureApplications() {
                 <button
                   key={dotIdx}
                   onClick={() => setCurrentIndex(dotIdx)}
-                  className={`h-2.5 rounded-full transition-all duration-300 ${
-                    currentIndex === dotIdx ? "w-6 bg-[#4baf47]" : "w-2.5 bg-[#00262f]/30 hover:bg-[#00262f]/50"
-                  }`}
+                  className={`h-2.5 rounded-full transition-all duration-300 ${currentIndex === dotIdx ? "w-6 bg-[#4baf47]" : "w-2.5 bg-[#00262f]/30 hover:bg-[#00262f]/50"
+                    }`}
                 />
               ))}
             </div>
