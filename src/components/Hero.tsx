@@ -79,7 +79,7 @@ export function Hero() {
             {/* Download Catalog - Outlined Button */}
             {/* <motion.a
               href={cataloguePdf}
-              download="Arabplast_Catalogue.pdf"
+              download="Arabplast Cataloge-2026.pdf"
               className="group flex flex-row items-center justify-center gap-2 px-8 py-3.5 bg-white rounded-lg border-2 border-gray-200 shadow-lg hover:bg-gray-50 transition-colors"
               style={{ display: "inline-flex", flexDirection: "row" as const, padding: "14px 32px" }}
               whileHover={{ scale: 1.03 }}
