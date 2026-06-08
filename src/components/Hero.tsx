@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 import { ArrowRight, Download } from "lucide-react";
 import heroVideo from "../assets/0_Pipes_Tubes_1920x1080.mp4";
 import posterImage from "../assets/255f8b75da8c48acb4d1529092d41378285f7e06.png";
-import cataloguePdf from "../assets/pdf/Arabplast_catalogee.pdf";
+import catalogPdf from "../assets/pdf/Arabplast_catalog.pdf";
 
 export function Hero() {
   return (
@@ -78,8 +78,8 @@ export function Hero() {
 
             {/* Download Catalog - Outlined Button */}
             {/* <motion.a
-              href={cataloguePdf}
-              download="Arabplast Cataloge-2026.pdf"
+              href={catalogPdf}
+              download="Arabplast Catalog-2026.pdf"
               className="group flex flex-row items-center justify-center gap-2 px-8 py-3.5 bg-white rounded-lg border-2 border-gray-200 shadow-lg hover:bg-gray-50 transition-colors"
               style={{ display: "inline-flex", flexDirection: "row" as const, padding: "14px 32px" }}
               whileHover={{ scale: 1.03 }}

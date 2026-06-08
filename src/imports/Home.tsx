@@ -1219,7 +1219,7 @@ function Group8() {
         Applications
       </p>
       <p className="absolute font-['Roboto:SemiBold',sans-serif] font-semibold leading-[normal] left-[889px] text-[#00262f] text-[20px] text-nowrap top-[129px] whitespace-pre" style={{ fontVariationSettings: "'wdth' 100" }}>
-        Catalogue
+        Catalog
       </p>
       <p className="absolute font-['Roboto:SemiBold',sans-serif] font-semibold leading-[normal] left-[1015px] text-[#00262f] text-[20px] text-nowrap top-[129px] whitespace-pre" style={{ fontVariationSettings: "'wdth' 100" }}>
         Contact Us

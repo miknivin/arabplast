@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { useInView } from "./hooks/useInView";
 import { Download, FileText } from "lucide-react";
-import cataloguePdf from "../assets/pdf/Arabplast_catalogee.pdf";
+import catalogPdf from "../assets/pdf/Arabplast_catalog.pdf";
 
 export function Downloads() {
   const { ref: heroRef, isInView: heroInView } = useInView({ threshold: 0.3 });
@@ -21,13 +21,13 @@ export function Downloads() {
 
   const handleDownload = async () => {
     try {
-      const res = await fetch(cataloguePdf, { mode: 'cors' });
+      const res = await fetch(catalogPdf, { mode: 'cors' });
       if (!res.ok) throw new Error('Network response was not ok');
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.download = 'Arabplast Cataloge-2026.pdf';
+      link.download = 'Arabplast Catalog-2026.pdf';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -36,8 +36,8 @@ export function Downloads() {
       console.error('Download failed', err);
       // Fallback to direct link if fetch fails
       const link = document.createElement('a');
-      link.href = cataloguePdf;
-      link.download = 'Arabplast Cataloge-2026.pdf';
+      link.href = catalogPdf;
+      link.download = 'Arabplast Catalog-2026.pdf';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -95,7 +95,7 @@ export function Downloads() {
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Download our comprehensive catalogue featuring complete product specifications,
+            Download our comprehensive catalog featuring complete product specifications,
             technical data, and installation guidelines for our entire range of piping solutions.
           </motion.p>
 
@@ -127,7 +127,7 @@ export function Downloads() {
               whileTap={{ scale: 0.97 }}
             >
               <Download style={{ width: "20px", height: "20px" }} />
-              Download Catalogue
+              Download Catalog
             </motion.button>
           </motion.div>
         </div>
