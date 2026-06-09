@@ -3,9 +3,17 @@
     "outputDirectory": "build",
     "devCommand": "npm run dev",
     "installCommand": "npm install",
+    "headers": [
+        {
+            "source": "/assets/(.*).pdf",
+            "headers": [
+                { "key": "Content-Type", "value": "application/pdf" }
+            ]
+        }
+    ],
     "rewrites": [
         {
-            "source": "/(.*)",
+            "source": "/((?!.*\\.).*)",
             "destination": "/index.html"
         }
     ]
