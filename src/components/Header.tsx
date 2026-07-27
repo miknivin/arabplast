@@ -83,10 +83,10 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                   <div>
                     <p className="text-xs">Call</p>
                     <a
-                      href="tel:+97167317334"
+                      href="tel:+97167673119"
                       className="text-sm text-white hover:text-[#60a5fa] transition-colors"
                     >
-                      +971 6 731 7334
+                      +971 6 767 3119
                     </a>
                   </div>
                 </motion.div>
@@ -204,7 +204,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                   <Phone className="w-4 h-4 text-[#002B7F]" />
                   <div>
                     <p className="text-xs text-gray-600">Call</p>
-                    <a href="tel:+97167317334" className="text-sm text-[#002B7F] hover:text-[#002B7F]/80">+971 6 731 7334</a>
+                    <a href="tel:+97167673119" className="text-sm text-[#002B7F] hover:text-[#002B7F]/80">+971 6 767 3119</a>
                   </div>
                 </div>
 

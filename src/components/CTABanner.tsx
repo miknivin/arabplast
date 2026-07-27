@@ -81,7 +81,7 @@ export function CTABanner() {
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Phone size={18} color="rgba(255,255,255,0.9)" />
-            <a href="tel:+97167317334" style={{ color: 'white', textDecoration: 'none' }}>+971 6 731 7334</a>
+            <a href="tel:+97167673119" style={{ color: 'white', textDecoration: 'none' }}>+971 6 767 3119</a>
           </div>
           <div
             style={{

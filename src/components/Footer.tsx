@@ -222,12 +222,12 @@ export function Footer({ onNavigate }: FooterProps) {
               <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                 <Phone style={{ width: "16px", height: "16px", color: "rgba(255,255,255,0.85)", flexShrink: 0 }} />
                 <a
-                  href="tel:+97167317334"
+                  href="tel:+97167673119"
                   style={{ color: "rgba(255,255,255,0.75)", fontSize: "14px", textDecoration: "none", transition: "color 0.2s" }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
                   onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
                 >
-                  +971 6 731 7334
+                  +971 6 767 3119
                 </a>
               </div>
 
